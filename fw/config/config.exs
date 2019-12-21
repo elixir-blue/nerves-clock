@@ -5,6 +5,9 @@
 # is restricted to this project.
 use Mix.Config
 
+# Blinkchain-specific configuration
+import_config "blinkchain.exs"
+
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
@@ -18,9 +21,8 @@ config :shoehorn,
   init: [:nerves_runtime, :nerves_init_gadget],
   app: Mix.Project.config()[:app]
 
-key = Path.join(System.user_home!, ".ssh/id_rsa.pub")
-unless File.exists?(key), do:
-  Mix.raise("No SSH Keys found. Please generate an ssh key")
+key = Path.join(System.user_home!(), ".ssh/id_rsa.pub")
+unless File.exists?(key), do: Mix.raise("No SSH Keys found. Please generate an ssh key")
 
 config :nerves_firmware_ssh,
   authorized_keys: [

@@ -1,5 +1,7 @@
 %{
   "artificery": {:hex, :artificery, "0.2.6", "f602909757263f7897130cbd006b0e40514a541b148d366ad65b89236b93497a", [:mix], [], "hexpm"},
+  "blinkchain": {:hex, :blinkchain, "1.0.0-rc0", "2abd02df6f63f3212f914bf0226dd4bcd98b0e7dd39e88f027af08f47f055939", [:make, :mix], [{:elixir_make, "~> 0.4", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
+  "color_stream": {:hex, :color_stream, "0.0.2", "400fe4b5efe3fcaf723d5bf2ba02f868b92b16b90b0bc99ebcf515a5678412ae", [:mix], [], "hexpm"},
   "cowboy": {:hex, :cowboy, "2.6.1", "f2e06f757c337b3b311f9437e6e072b678fcd71545a7b2865bdaa154d078593f", [:rebar3], [{:cowlib, "~> 2.7.0", [hex: :cowlib, repo: "hexpm", optional: false]}, {:ranch, "~> 1.7.1", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
   "cowlib": {:hex, :cowlib, "2.7.0", "3ef16e77562f9855a2605900cedb15c1462d76fb1be6a32fc3ae91973ee543d2", [:rebar3], [], "hexpm"},
   "distillery": {:hex, :distillery, "2.0.10", "e9f1f1d3f4a89996a3e1a555872feed8a3a73e3d10b51886941382d29ca58f99", [:mix], [{:artificery, "~> 0.2", [hex: :artificery, repo: "hexpm", optional: false]}], "hexpm"},

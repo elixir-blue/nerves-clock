@@ -42,8 +42,9 @@ defmodule FW.MixProject do
       {:shoehorn, "~> 0.4"},
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
-      {:nerves_time, "~> 0.2"},
-      {:ui, path: "../ui"},
+      {:color_stream, "~> 0.0"},
+      {:blinkchain, "~> 1.0.0-rc0"},
+      {:ui, path: "../ui"}
     ] ++ deps(@target)
   end
 
@@ -53,7 +54,8 @@ defmodule FW.MixProject do
   defp deps(target) do
     [
       {:nerves_runtime, "~> 0.6"},
-      {:nerves_init_gadget, "~> 0.4"}
+      {:nerves_init_gadget, "~> 0.4"},
+      {:nerves_time, "~> 0.2"}
     ] ++ system(target)
   end
 
