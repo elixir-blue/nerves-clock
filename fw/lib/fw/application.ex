@@ -3,21 +3,29 @@ defmodule FW.Application do
   # for more information on OTP Applications
   @moduledoc false
 
-  @target Mix.target()
-
   use Application
 
+  @impl true
   def start(_type, _args) do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: FW.Supervisor]
-    Supervisor.start_link(children(@target), opts)
+
+    children =
+      [
+        # Children for all targets
+        # Starts a worker by calling: FW.Worker.start_link(arg)
+        # {FW.Worker, arg},
+      ] ++ children(target())
+
+    Supervisor.start_link(children, opts)
   end
 
   # List all child processes to be supervised
-  def children("host") do
+  def children(:host) do
     [
       {FW.Display.Worker, ColorStream.hex()}
+      # Children that only run on the host
       # Starts a worker by calling: FW.Worker.start_link(arg)
       # {FW.Worker, arg},
     ]
@@ -25,20 +33,14 @@ defmodule FW.Application do
 
   def children(_target) do
     [
-      # {FW.Display.Worker, ColorStream.hex()}
-      {FW.Display.Worker, [
-        "FF0000",
-        "00FF00",
-        "0000FF",
-        "FFFF00",
-        "00FFFF",
-        "FF00FF",
-        "0FFFF0",
-        "00FFFF",
-        "F00FFF",
-      ]}
+      {FW.Display.Worker, ColorStream.hex(saturation: 1, value: 1) |> Enum.take(256)}
+      # Children for all targets except host
       # Starts a worker by calling: FW.Worker.start_link(arg)
       # {FW.Worker, arg},
     ]
+  end
+
+  def target() do
+    Application.get_env(:rpi0_test, :target)
   end
 end

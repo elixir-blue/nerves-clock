@@ -2,22 +2,27 @@ defmodule FW.Display.Worker do
   use GenServer
   require Logger
 
-  def init(color_stream) do
+  def init(colors) do
     Logger.debug("Display.Worker init")
     schedule_update()
-    {:ok, color_stream}
+    {:ok, convert(colors)}
   end
 
-  def start_link(color_stream) do
-    GenServer.start_link(__MODULE__, color_stream)
+  def start_link(colors) do
+    GenServer.start_link(__MODULE__, colors)
   end
 
-  def handle_info(:update_display, color_stream) do
-    Logger.debug("Display.Worker handle_info :update_display")
-    update_display(color_stream)
+  def handle_info(:update_display, colors) do
+    update_display(colors)
     schedule_update()
-    {:noreply, color_stream}
+    {:noreply, rotate(colors)}
   end
+
+  defp convert(colors) do
+    Enum.map(colors, fn raw -> "#" <> raw end)
+  end
+
+  defp rotate([head | tail]), do: tail ++ [head]
 
   defp set_pixel({hex, x}) do
     color = Blinkchain.Color.parse(hex)
@@ -28,10 +33,8 @@ defmodule FW.Display.Worker do
     Process.send_after(self(), :update_display, 250)
   end
 
-  defp update_display(color_stream) do
-    color_stream
-    |> Enum.take_random(8)
-    |> Enum.map(fn raw -> "#" <> raw end)
+  defp update_display(colors) do
+    colors
     |> Enum.with_index()
     |> Enum.each(&set_pixel/1)
 
