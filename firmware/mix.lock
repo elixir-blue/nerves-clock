@@ -1,7 +1,9 @@
 %{
   "beam_notify": {:hex, :beam_notify, "1.0.0", "5b8dceed76f8ac4acadf4d2915ac85b98c42bb17d7dd58253c7593d2a0deedbd", [:make, :mix], [{:elixir_make, "~> 0.6", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "a80331f6c3596918affa408d91ed634106b7ae71b3fc589432363aca68378362"},
+  "blinkchain": {:hex, :blinkchain, "1.0.0", "0bef4296c0fc3e36c153d717eefcaf5fa6681b4c81f3f5b98030e8044d3d3fe1", [:make, :mix], [{:elixir_make, "~> 0.6", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "ecf950d7eb3fb0409efb64e952be3d921bc20045a5cd736cd4c4e52cfa852c7a"},
   "castore": {:hex, :castore, "0.1.17", "ba672681de4e51ed8ec1f74ed624d104c0db72742ea1a5e74edbc770c815182f", [:mix], [], "hexpm", "d9844227ed52d26e7519224525cb6868650c272d4a3d327ce3ca5570c12163f9"},
   "circular_buffer": {:hex, :circular_buffer, "0.4.1", "477f370fd8cfe1787b0a1bade6208bbd274b34f1610e41f1180ba756a7679839", [:mix], [], "hexpm", "633ef2e059dde0d7b89bbab13b1da9d04c6685e80e68fbdf41282d4fae746b72"},
+  "color_stream": {:hex, :color_stream, "0.0.2", "400fe4b5efe3fcaf723d5bf2ba02f868b92b16b90b0bc99ebcf515a5678412ae", [:mix], [], "hexpm", "b1181f32b310311016006f4f8d52b3418d1af6f06e71903daabafdcaa602a29d"},
   "elixir_make": {:hex, :elixir_make, "0.6.3", "bc07d53221216838d79e03a8019d0839786703129599e9619f4ab74c8c096eac", [:mix], [], "hexpm", "f5cbd651c5678bcaabdbb7857658ee106b12509cd976c2c2fca99688e1daf716"},
   "gen_state_machine": {:hex, :gen_state_machine, "3.0.0", "1e57f86a494e5c6b14137ebef26a7eb342b3b0070c7135f2d6768ed3f6b6cdff", [:mix], [], "hexpm", "0a59652574bebceb7309f6b749d2a41b45fdeda8dbb4da0791e355dd19f0ed15"},
   "mdns_lite": {:hex, :mdns_lite, "0.8.6", "cafdcde5be222d151342629637ec3178619090e4668a57c8cfdc67d970d0b268", [:mix], [{:vintage_net, "~> 0.7", [hex: :vintage_net, repo: "hexpm", optional: true]}], "hexpm", "7b6fcf2d45be8823492b77380f69510327d3a98f6b17d403f355daf31e1ac961"},

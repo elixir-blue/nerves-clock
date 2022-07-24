@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # This gamma table will give a more visually-appealing look to the LEDs based
 # on the non-linear way that human eyes respond to pulse-width modulated LED

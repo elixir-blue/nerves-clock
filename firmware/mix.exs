@@ -23,7 +23,7 @@ defmodule Firmware.MixProject do
   def application do
     [
       mod: {Firmware.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:inets, :logger, :runtime_tools]
     ]
   end
 
@@ -35,6 +35,10 @@ defmodule Firmware.MixProject do
       {:shoehorn, "~> 0.9.1"},
       {:ring_logger, "~> 0.8.5"},
       {:toolshed, "~> 0.2.26"},
+
+      {:color_stream, "~> 0.0.0"},
+      {:blinkchain, "~> 1.0.0"},
+      # {:blinkchain, path: "../blinkchain.git"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.13.0", targets: @all_targets},

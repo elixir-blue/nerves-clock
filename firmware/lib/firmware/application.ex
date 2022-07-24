@@ -24,6 +24,7 @@ defmodule Firmware.Application do
   # List all child processes to be supervised
   def children(:host) do
     [
+      {Firmware.Display.Worker, ColorStream.hex(saturation: 1, value: 1) |> Enum.take(256)}
       # Children that only run on the host
       # Starts a worker by calling: Firmware.Worker.start_link(arg)
       # {Firmware.Worker, arg},
@@ -32,6 +33,7 @@ defmodule Firmware.Application do
 
   def children(_target) do
     [
+      {Firmware.Display.Worker, ColorStream.hex(saturation: 1, value: 1) |> Enum.take(256)}
       # Children for all targets except host
       # Starts a worker by calling: Firmware.Worker.start_link(arg)
       # {Firmware.Worker, arg},

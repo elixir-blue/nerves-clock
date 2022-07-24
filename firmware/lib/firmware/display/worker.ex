@@ -1,4 +1,4 @@
-defmodule FW.Display.Worker do
+defmodule Firmware.Display.Worker do
   use GenServer
   require Logger
 

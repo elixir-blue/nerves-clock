@@ -5,6 +5,9 @@
 # this project.
 import Config
 
+# Blinkchain-specific configuration
+import_config "blinkchain.exs"
+
 # Enable the Nerves integration with Mix
 Application.start(:nerves_bootstrap)
 
