@@ -1,21 +1,32 @@
-defmodule Firmware.Display.Worker do
+defmodule Firmware.Worker do
   use GenServer
   require Logger
 
   def init(colors) do
     Logger.debug("Display.Worker init")
     schedule_update()
-    {:ok, convert(colors)}
+
+    display = %Firmware.Display{
+      digit_1: %Firmware.Digit{},
+      digit_2: %Firmware.Digit{},
+      digit_3: %Firmware.Digit{},
+      digit_4: %Firmware.Digit{},
+    }
+
+    {:ok, [convert(colors), display]}
   end
 
   def start_link(colors) do
     GenServer.start_link(__MODULE__, colors)
   end
 
-  def handle_info(:update_display, colors) do
-    update_display(colors)
+  def handle_info(:update_display, [colors, display]) do
+    DateTime.utc_now()
+    |> update_display(colors, display)
+
     schedule_update()
-    {:noreply, rotate(colors)}
+
+    {:noreply, [rotate(colors), display]}
   end
 
   defp convert(colors) do
@@ -33,7 +44,7 @@ defmodule Firmware.Display.Worker do
     Process.send_after(self(), :update_display, 250)
   end
 
-  defp update_display(colors) do
+  defp update_display(_time, colors, _display) do
     colors
     |> Enum.with_index()
     |> Enum.each(&set_pixel/1)
