@@ -40,6 +40,8 @@ defmodule Firmware.MixProject do
       {:blinkchain, "~> 1.0.0"},
       # {:blinkchain, path: "../blinkchain.git"},
 
+      {:ui, path: "../ui", targets: @all_targets, env: Mix.env()},
+
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.13.0", targets: @all_targets},
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
