@@ -1,3 +1,3 @@
-defmodule UIWeb.PageView do
-  use UIWeb, :view
+defmodule UiWeb.PageView do
+  use UiWeb, :view
 end

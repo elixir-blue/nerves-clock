@@ -1,4 +1,4 @@
-defmodule UIWeb.ConnCase do
+defmodule UiWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -8,9 +8,11 @@ defmodule UIWeb.ConnCase do
   to build common data structures and query the data layer.
 
   Finally, if the test case interacts with the database,
-  it cannot be async. For this reason, every test runs
-  inside a transaction which is reset at the beginning
-  of the test unless the test case is marked as async.
+  we enable the SQL sandbox, so changes done to the database
+  are reverted at the end of every test. If you are using
+  PostgreSQL, you can even run database tests asynchronously
+  by setting `use UiWeb.ConnCase, async: true`, although
+  this option is not recommended for other databases.
   """
 
   use ExUnit.CaseTemplate
@@ -18,11 +20,14 @@ defmodule UIWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      use Phoenix.ConnTest
-      alias UIWeb.Router.Helpers, as: Routes
+      import Plug.Conn
+      import Phoenix.ConnTest
+      import UiWeb.ConnCase
+
+      alias UiWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint UIWeb.Endpoint
+      @endpoint UiWeb.Endpoint
     end
   end
 
