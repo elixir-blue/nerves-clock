@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "firmware"
+		},
+		{
+			"path": "ui"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
