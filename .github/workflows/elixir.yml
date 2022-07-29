@@ -29,7 +29,7 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Bootstrap hex, nerves
-      run: mix archive.install hex nerves_bootstrap
+      run: mix archive.install hex nerves_bootstrap --force
     - name: Install dependencies
       run: mix deps.get
       working-directory: firmware
