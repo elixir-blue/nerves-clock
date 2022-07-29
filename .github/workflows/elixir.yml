@@ -30,9 +30,15 @@ jobs:
         restore-keys: ${{ runner.os }}-mix-
     - name: Bootstrap hex, nerves
       run: mix archive.install hex nerves_bootstrap --force
-    - name: Install dependencies
+    - name: Install firmware dependencies
       run: mix deps.get
       working-directory: firmware
-    - name: Run tests
+    - name: Install UI dependencies
+      run: mix deps.get
+      working-directory: ui
+    - name: Run firmware tests
       run: mix test
       working-directory: firmware
+    - name: Run UI tests
+      run: mix test
+      working-directory: ui
