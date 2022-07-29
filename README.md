@@ -1,32 +1,32 @@
-# Clock
+# Nerves Clock
 
-**TODO: Add description**
+Use Linux, Erlang, Elixir and other kinds of overkill to make an LED clock for some reason.
 
-## Targets
+## Building
 
-Nerves applications produce images for hardware targets based on the
-`MIX_TARGET` environment variable. If `MIX_TARGET` is unset, `mix` builds an
-image that runs on the host (e.g., your laptop). This is useful for executing
-logic tests, running utilities, and debugging. Other targets are represented by
-a short name like `rpi3` that maps to a Nerves system image for that platform.
-All of this logic is in the generated `mix.exs` and may be customized. For more
-information about targets see:
+Uses the [poncho project][nerves-poncho] approach to bundle applications together in the firmware.
 
-https://hexdocs.pm/nerves/targets.html#content
+### UI
 
-## Getting Started
+The UI assets and dependencies need to be available before running a firmware build.
 
-To start your Nerves app:
-  * `export MIX_TARGET=my_target` or prefix every command with
-    `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi3`
-  * Install dependencies with `mix deps.get`
-  * Create firmware with `mix firmware`
-  * Burn to an SD card with `mix firmware.burn`
+```shell
+$ MIX_TARGET=host MIX_ENV=dev mix do deps.get, assets.deploy
+```
 
-## Learn more
+### Firmware
 
-  * Official docs: https://hexdocs.pm/nerves/getting-started.html
-  * Official website: https://nerves-project.org/
-  * Forum: https://elixirforum.com/c/nerves-forum
-  * Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
-  * Source: https://github.com/nerves-project/nerves
+Only tested with Raspberry Pi Zero W, so using the rpi0 target.
+
+```shell
+$ MIX_TARGET=rpi0 mix do deps.get, firmware, upload
+```
+
+## Useful Links
+
+* Nerves docs: https://hexdocs.pm/nerves/getting-started.html
+* Nerves website: https://nerves-project.org/
+* Nerves Forum: https://elixirforum.com/c/nerves-forum
+* Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
+
+[nerves-poncho]: https://hexdocs.pm/nerves/user-interfaces.html#create-a-poncho-project
