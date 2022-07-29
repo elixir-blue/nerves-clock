@@ -29,10 +29,8 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
-      with:
-        path: firmware
-        run: mix deps.get
+      run: mix deps.get
+      working-directory: firmware
     - name: Run tests
-      with:
-        path: firmware
-        run: mix test
+      run: mix test
+      working-directory: firmware
